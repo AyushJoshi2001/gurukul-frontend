@@ -1,16 +1,20 @@
 import { useFormik } from "formik";
-import { FC, memo, useState } from "react";
+import { FC, memo, useContext, useState } from "react";
 import "../css/loginPage.css";
 import * as yup from "yup";
 import logo from "../img/gurukul_icon.jpg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Input from "../component/Input";
 import { FaLock, FaUserAlt } from "react-icons/fa";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
+import { signup } from "../api/auth";
+import AuthContext from "../context/auth.context";
 
 interface Props {}
 
 const Signup: FC<Props> = (props) => {
+  const { setUser } = useContext(AuthContext);
+  const history = useHistory();
   const [toggle, setToggle] = useState(false);
   let toggleClass = "";
 
@@ -28,12 +32,26 @@ const Signup: FC<Props> = (props) => {
     initialValues: {
       email: "",
       password: "",
+      name: "",
     },
     validationSchema: yup.object().shape({
       email: yup.string().required().email(),
       password: yup.string().required().min(8),
+      name: yup.string().required().min(3),
     }),
-    onSubmit: (data) => {},
+    onSubmit: (data) => {
+      signup(data)
+        .then((response) => {
+          // console.log("ID : ", response.user?.providerId);
+          if (response.user != null) {
+            setUser(response.user);
+          }
+          history.push("/classroom");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    },
   });
 
   return (
@@ -69,6 +87,24 @@ const Signup: FC<Props> = (props) => {
             <FaUserAlt className="absolute left-0 text-blue-500 top-11 " />
             {formik.touched.email && (
               <p className="text-red-600">{formik.errors.email}</p>
+            )}
+          </div>
+          <div className="relative pt-8">
+            <label className="sr-only">Name</label>
+            <Input
+              type="name"
+              name="name"
+              placeholder="Name"
+              className="w-full pl-7 focus:border-blue-400 "
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              required
+              autoComplete="email"
+            />
+            <FaUserAlt className="absolute left-0 text-blue-500 top-9 " />
+            {formik.touched.name && (
+              <p className="text-red-600">{formik.errors.name}</p>
             )}
           </div>
           <div className="relative pt-8">

@@ -1,16 +1,20 @@
 import { useFormik } from "formik";
-import { FC, memo, useState } from "react";
+import { FC, memo, useContext, useState } from "react";
 import "../css/loginPage.css";
 import * as yup from "yup";
 import logo from "../img/gurukul_icon.jpg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Input from "../component/Input";
 import { FaLock, FaUserAlt } from "react-icons/fa";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
+import { login, TOKEN_ID } from "../api/auth";
+import AuthContext from "../context/auth.context";
 
 interface Props {}
 
 const Login: FC<Props> = (props) => {
+  const { setUser } = useContext(AuthContext);
+  const history = useHistory();
   const [toggle, setToggle] = useState(false);
   let toggleClass = "";
 
@@ -33,7 +37,21 @@ const Login: FC<Props> = (props) => {
       email: yup.string().required().email(),
       password: yup.string().required().min(8),
     }),
-    onSubmit: (data) => {},
+    onSubmit: (data) => {
+      login(data)
+        .then((response) => {
+          // console.log("ID : ", response.user);
+          if (response.user != null) {
+            localStorage.setItem(TOKEN_ID, response.user.refreshToken);
+            setUser(response.user);
+          }
+          history.push("/classroom");
+        })
+        .catch((error) => {
+          // console.log(error);
+          alert(error.message);
+        });
+    },
   });
 
   return (

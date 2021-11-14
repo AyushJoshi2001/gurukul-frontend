@@ -1,5 +1,7 @@
 import { auth } from "../firebase";
 
+export const TOKEN_ID = "token";
+
 interface Signup {
     email: string;
     password: string;
@@ -22,4 +24,12 @@ interface Login {
 export const login = (data: Login) => {
     // console.log("Login details : " , data);
     return auth.signInWithEmailAndPassword(data.email, data.password);
+}
+
+export const signout = () => {
+    // console.log("signout...");
+    auth.signOut();
+    
+    localStorage.removeItem(TOKEN_ID);
+    window.location.href = "/login";
 }
