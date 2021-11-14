@@ -37,7 +37,7 @@ const Signup: FC<Props> = (props) => {
   });
 
   return (
-    <div className="flex items-center justify-center w-full min-h-screen bg-gray-300">
+    <div className="flex items-center justify-center w-full min-h-screen bg-primaryPink">
       <form
         className="w-full max-w-lg px-5 py-5 mx-5 bg-white rounded-lg"
         onSubmit={formik.handleSubmit}

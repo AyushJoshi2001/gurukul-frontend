@@ -1,19 +1,15 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LoginPage from "./Pages/Login.page";
-import SignupPage from "./Pages/Signup.page";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import AuthPage from "./Pages/Auth.page";
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          <LoginPage />
+          <Redirect to="/login" />
         </Route>
-        <Route path="/login" exact>
-          <LoginPage />
-        </Route>
-        <Route path="/signup" exact>
-          <SignupPage />
+        <Route path={["/login", "/signup"]} exact>
+          <AuthPage />
         </Route>
         <Route>
           <p>Page not found</p>
