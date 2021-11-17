@@ -1,5 +1,4 @@
 import { FC, memo } from "react";
-import { signout } from "../api/auth";
 import ClassCard from "../component/ClassCard";
 import Navbar from "../component/Navbar";
 
