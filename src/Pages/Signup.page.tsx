@@ -171,7 +171,7 @@ const Signup: FC<Props> = (props) => {
                 type="submit"
                 className="px-5 py-2 text-sm text-white bg-blue-500 rounded hover:bg-red-600 bg-primary"
               >
-                Log In
+                Sign Up
               </button>
             </div>
           </div>
