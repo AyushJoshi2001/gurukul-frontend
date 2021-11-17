@@ -1,12 +1,14 @@
 import { FC, memo } from "react";
 import { signout } from "../api/auth";
+import ClassCard from "../component/ClassCard";
+import Navbar from "../component/Navbar";
 
 interface Props {}
 
 const Classroom: FC<Props> = (props) => {
   return (
     <div>
-      <p className="text-4xl">classroom page</p>
+      <Navbar />
       <button
         type="button"
         className="px-3 py-2 mx-3 mt-3 font-semibold text-left text-white bg-green-400 rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
@@ -16,6 +18,8 @@ const Classroom: FC<Props> = (props) => {
       >
         SignOut.
       </button>
+
+      <ClassCard />
     </div>
   );
 };
