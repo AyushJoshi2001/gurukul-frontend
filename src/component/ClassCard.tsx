@@ -11,7 +11,7 @@ interface Props {
 const ClassCard: FC<Props> = (props) => {
   return (
     <div
-      className="relative flex flex-col max-w-xs m-5 overflow-hidden border border-gray-400 rounded-lg"
+      className="relative flex flex-col max-w-xs m-5 overflow-hidden border border-gray-400 rounded-lg shadow-md hover:shadow-2xl"
       style={{ minWidth: "280px" }}
     >
       <div className="flex flex-col p-5 space-y-1 text-white bg-gray-600">
@@ -28,11 +28,11 @@ const ClassCard: FC<Props> = (props) => {
 
       <div className="p-5 h-36">
         {/* list of assignments */}
-        <p className="text-gray-500">due date</p>
+        <p className="text-gray-400">due date</p>
         <p>name of assignment</p>
       </div>
 
-      <div className="flex justify-end px-5 py-3 space-x-2 border-t border-gray-500">
+      <div className="flex justify-end px-5 py-3 space-x-2 border-t border-gray-400">
         <ImProfile className="w-7 h-7" />
         <BiFolder className="w-7 h-7" />
       </div>
