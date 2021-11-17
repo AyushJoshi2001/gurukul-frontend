@@ -12,7 +12,7 @@ const PostWithComment: FC<Props> = (props) => {
         <header>
             <img src={dummy} alt="GLA logo" />
             <div id="headerInfoDiv">
-                <h3>Pankaj Kapoor</h3>
+                <h3>Teacher Name</h3>
                 <p>Month Date (Edited Month Data)</p>
             </div>
         </header>
@@ -21,7 +21,7 @@ const PostWithComment: FC<Props> = (props) => {
             <div id="mainSubDiv">
             <div id="mainContentDiv">
             <p>Sample Zip File for the reference of Project Submission. Sample Message</p>
-            <p>Note: Kindly follow the deadline of 10th Nov , 2021. No submission allowed after this.</p>
+            <p>Note: Kindly follow the deadline of 25th Nov , 2021. No submission allowed after this.</p>
             </div>
 
             <div id="lowerDivForPost">
@@ -45,7 +45,7 @@ const PostWithComment: FC<Props> = (props) => {
                     </div>
                 </footer>
         </main>
-        
+
     </div>
   );
 };
