@@ -18,7 +18,7 @@ function App() {
           <Route path={["/login", "/signup"]} exact>
             <AuthPage />
           </Route>
-          <Route path={["/classroom", "/dashboard"]} exact>
+          <Route path={["/classroom", "/dashboard", "/assignment"]} exact>
             <AppContainerPage />
           </Route>
           <Route>

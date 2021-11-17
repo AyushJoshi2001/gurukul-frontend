@@ -1,6 +1,7 @@
 import { FC, memo } from "react";
 import { Route, Switch } from "react-router";
 import Navbar from "../component/Navbar";
+import AssignmentPage from "./Assignment.page";
 import ClassroomPage from "./Classroom.page";
 import DashboardPage from "./Dashboard.page";
 
@@ -17,6 +18,9 @@ const AppContainer: FC<Props> = (props) => {
           </Route>
           <Route path="/dashboard">
             <DashboardPage />
+          </Route>
+          <Route path="/assignment">
+            <AssignmentPage />
           </Route>
         </Switch>
       </div>

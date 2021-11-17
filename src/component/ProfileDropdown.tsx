@@ -1,8 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { FC, Fragment, memo } from "react";
 import { CgProfile } from "react-icons/cg";
-import { FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { signout } from "../api/auth";
 import { VscSignOut } from "react-icons/vsc";
 
@@ -30,21 +28,6 @@ const ProfileDropdown: FC<Props> = ({ className }) => {
             leaveTo="opacity-0"
           >
             <Menu.Items className="absolute w-40 bg-gray-100 rounded shadow-lg top-20 right-5">
-              <Menu.Item>
-                {({ active }) => (
-                  <Link
-                    to="/profile"
-                    className={`py-2 flex px-3 text-sm space-x-2 ${
-                      active ? "text-primary" : "text-gray-800"
-                    } `}
-                  >
-                    <div className="flex items-center">
-                      <FaUser className="w-4 h-4" />
-                    </div>
-                    <p>Profile</p>
-                  </Link>
-                )}
-              </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
                   <button
