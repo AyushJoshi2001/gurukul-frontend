@@ -54,6 +54,13 @@ header p {
   display: flex;
 }
 
+#lowerDivForPost:hover {
+    color: green;
+    font-size: 1.2rem;
+  border: 1px solid #66bfbf;
+  transition: font-size 0.8s ease;
+}
+
 #mainSubDiv {
   padding-bottom: 2rem;
   border-bottom: 1px solid gray;
@@ -98,8 +105,7 @@ footer {
   border-radius: 10px;
 }
 
-#footerRigthDiv textarea:hover{
-    border: 2.5px solid #66bfbf;
-    transition: border 0.8s ease;
+#footerRigthDiv textarea:hover {
+  border: 2.5px solid #66bfbf;
+  transition: border 0.8s ease;
 }
-
