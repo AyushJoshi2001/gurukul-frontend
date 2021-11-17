@@ -16,7 +16,7 @@ const Classroom: FC<Props> = (props) => {
           signout();
         }}
       >
-        SignOut.
+        SignOut..
       </button>
 
       <ClassCard />
