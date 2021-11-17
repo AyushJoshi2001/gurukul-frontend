@@ -1,6 +1,7 @@
 import { FC, memo } from "react";
 import { ImProfile } from "react-icons/im";
 import { BiFolder } from "react-icons/bi";
+import dummyProfileImg from "../img/dummy_profile.webp";
 
 interface Props {
   nameOfClass?: string;
@@ -21,7 +22,7 @@ const ClassCard: FC<Props> = (props) => {
       </div>
 
       <img
-        src="logo192.png"
+        src={dummyProfileImg}
         className="absolute w-16 h-16 bg-blue-500 rounded-full right-5 top-24"
         alt=""
       />
