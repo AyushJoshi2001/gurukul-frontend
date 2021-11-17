@@ -7,6 +7,7 @@ interface Props {}
 const Classroom: FC<Props> = (props) => {
   return (
     <div>
+      ...
       <Navbar />
       <ClassCard />
     </div>
