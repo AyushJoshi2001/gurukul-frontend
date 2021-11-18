@@ -1,5 +1,8 @@
 /* Container div */
 #container {
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../img/classroom.jpg);
+  background-size: cover;
+  color: white;
   border-radius: 10px;
   width: 80vw;
   border: 1px solid grey;
@@ -8,7 +11,7 @@
 
 #container:hover {
   transition: box-shadow 0.8s ease;
-  box-shadow: 3px 3px gray;
+  box-shadow: 5px 5px #66bfbf;
 }
 
 /* Header Div */
