@@ -1,8 +1,6 @@
 /* Container div */
 #container {
-  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../img/classroom.jpg);
-  background-size: cover;
-  color: white;
+  color: black;
   border-radius: 10px;
   width: 80vw;
   border: 1px solid grey;
