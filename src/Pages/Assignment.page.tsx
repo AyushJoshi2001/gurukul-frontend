@@ -1,22 +1,23 @@
 import { FC, memo } from "react";
 import "../css/assignmentPage.css";
-import {IoMdSend} from "react-icons/io";
-
-import dummy from "../img/classroom.jpg"
+import dummy from "../img/classroom.jpg";
+import ClassCommentTextarea from "../component/ClassCommentTextarea";
 
 interface Props {}
 
 const Assignment: FC<Props> = (props) => {
   return (
-    <div id="content">
-      <div id="parent-head">
+    <div id="content" className="max-w-2xl mx-auto">
+      <div id="parent-head ">
         <div className="head-section">Fullstack Practical-14</div>
         <div className="info">
           <p>Pankaj Kapoor (Month Date)</p>
         </div>
-        <div className="marks">
+        <div className="flex justify-between marks">
           <p>100 points</p>
-          <div className="due-date">Due Month Date</div>
+          <div className="flex items-center">
+            <p className="text-base text-gray-400">Due Month Date</p>
+          </div>
         </div>
       </div>
 
@@ -24,43 +25,21 @@ const Assignment: FC<Props> = (props) => {
         <div className="heading">
           Create a Counter Page using JavaScript as per the attached Templates.
         </div>
-        <ol>
-          <li>Instructions:</li>
-          <li>
-            - Students have to create a Counter with Functionality of Increment
-            and Decrement as per attached screenshot.
-          </li>
-          <li>
-            - ' +' Button will increment the counter, '-' Button will decrement
-            the counter. On Value 0, ' - ' Button will Disabled.
-          </li>
-          <li>
-            - Students have to share Output Screen Shot, JavaScript code and
-            Link of the live page in private comment section.
-          </li>
-          <li>
-            - Students have to share Output Screen Shot, JavaScript code and
-            Link of the live page in private comment section.
-          </li>
-          <li>- Update index.html for practical-14 also.</li>
-          <li>- follow the instructions properly to get the marks</li>
-          <li>- Refer to the attachment.</li>
-        </ol>
+        <p>Instructions:</p>
+        <p>instruction text</p>
       </div>
 
       <div id="lowerDivForPost">
-                <div className="image-div1"><img src={dummy} alt="Assginment-image" /></div>
-                <div id="image-rightDiv"><h1>Pracital-15.png</h1>
-                    <p>image file</p>
-                </div>
+        <div className="image-div1">
+          <img src={dummy} alt="Assginment" />
+        </div>
+        <div id="image-rightDiv">
+          <h1>Pracital-15.png</h1>
+          <p>image file</p>
+        </div>
       </div>
 
-      <div id="CommentDiv">
-                    <textarea  placeholder="Add your comment here" />
-                    <div className="flex items-center mx-auto">
-                        <IoMdSend className="w-7 h-7"/>
-                    </div>
-                    </div>
+      <ClassCommentTextarea className="mt-3" />
     </div>
   );
 };

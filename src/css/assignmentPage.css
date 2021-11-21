@@ -26,15 +26,6 @@
   margin-top: 0.5rem;
 }
 
-.due-date {
-  position: absolute;
-  top: 13.1rem;
-  right: 30rem;
-  color: gray;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
 #content-container {
   margin-top: 1.5rem;
   font-size: 1.2rem;
@@ -52,19 +43,13 @@
   margin-right: 1.9rem;
 }
 
-#CommentDiv {
-  margin-top: 1.5rem;
-  display: flex;
- 
-}
-
-#CommentDiv textarea{
+#CommentDiv textarea {
   width: 70%;
   border-radius: 10px;
   box-shadow: 2px 2px #66bfbf;
 }
 
-#CommentDiv textarea:hover{
+#CommentDiv textarea:hover {
   border: 2px solid #66bfbf;
   transition: border 1s ease;
 }

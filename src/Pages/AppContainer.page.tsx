@@ -11,19 +11,17 @@ const AppContainer: FC<Props> = (props) => {
   return (
     <>
       <Navbar />
-      <div className="flex">
-        <Switch>
-          <Route path="/classroom">
-            <ClassroomPage />
-          </Route>
-          <Route path="/dashboard">
-            <DashboardPage />
-          </Route>
-          <Route path="/assignment">
-            <AssignmentPage />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/classroom">
+          <ClassroomPage />
+        </Route>
+        <Route path="/dashboard">
+          <DashboardPage />
+        </Route>
+        <Route path="/assignment">
+          <AssignmentPage />
+        </Route>
+      </Switch>
     </>
   );
 };
