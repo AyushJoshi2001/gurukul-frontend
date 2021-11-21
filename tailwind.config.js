@@ -6,6 +6,10 @@ module.exports = {
       backgroundColor: {
         primaryPink: "#F7BDD6",
       },
+      backgroundImage: {
+        dashboard_background:
+          "url('https://www.gstatic.com/classroom/themes/img_walkingdog.jpg')",
+      },
     },
   },
   variants: {

@@ -2,9 +2,10 @@
 #container {
   color: black;
   border-radius: 10px;
-  width: 80vw;
   border: 1px solid grey;
   padding: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #container:hover {
@@ -56,8 +57,8 @@ header p {
 }
 
 #lowerDivForPost:hover {
-    color: green;
-    font-size: 1.2rem;
+  color: green;
+  font-size: 1.2rem;
   border: 1px solid #66bfbf;
   transition: font-size 0.8s ease;
 }

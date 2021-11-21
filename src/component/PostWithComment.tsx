@@ -7,7 +7,7 @@ interface Props {}
 
 const PostWithComment: FC<Props> = (props) => {
   return (
-    <div id="container">
+    <div id="container" className="max-w-5xl">
       <header>
         <img src={dummy} alt="GLA logo" />
         <div id="headerInfoDiv">
@@ -54,9 +54,9 @@ const PostWithComment: FC<Props> = (props) => {
           {/* <div id="footerRigthDiv">
                     <textarea  placeholder="Add your comment here" />
                     <div className="flex items-center mx-auto">
-                        <IoMdSend className="w-7 h-7"/>
+                    <IoMdSend className="w-7 h-7"/>
                     </div>
-                    </div> */}
+                  </div> */}
           <ClassCommentTextarea className="" />
         </footer>
       </main>

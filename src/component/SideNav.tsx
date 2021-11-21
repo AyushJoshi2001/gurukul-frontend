@@ -46,65 +46,38 @@ const SideNav: FC<Props> = ({ className }) => {
             <div className="fixed top-0 left-0 z-10 transform">
               <div
                 className={
-                  "relative flex flex-col w-64 min-h-screen bg-gray-200 rounded-md flex-shrink-0" +
+                  "relative flex flex-col w-64 min-h-screen bg-white rounded-md flex-shrink-0" +
                   className
                 }
               >
                 <GiCancel
-                  className="absolute w-7 h-7 right-2 top-2"
+                  className="absolute text-black w-7 h-7 right-2 top-2"
                   onClick={() => {
                     setIsOpen(!isOpen);
                   }}
                 />
                 <Link
-                  to="/home"
-                  className="px-3 py-2 mx-3 mt-16 font-semibold text-white bg-green-400 rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
+                  to="/classroom"
+                  className="px-3 py-2 mx-3 mt-16 text-xl font-semibold text-black rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
                   onClick={() => {
                     setIsOpen(!isOpen);
                   }}
                 >
-                  Home
-                </Link>
-                <Link
-                  to="/profile"
-                  className="px-3 py-2 mx-3 mt-3 font-semibold text-white bg-green-400 rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
-                  onClick={() => {
-                    setIsOpen(!isOpen);
-                  }}
-                >
-                  Profile
-                </Link>
-                <Link
-                  to="/about"
-                  className="px-3 py-2 mx-3 mt-3 font-semibold text-white bg-green-400 rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
-                  onClick={() => {
-                    setIsOpen(!isOpen);
-                  }}
-                >
-                  About
-                </Link>
-                <Link
-                  to="/contact"
-                  className="px-3 py-2 mx-3 mt-3 font-semibold text-white bg-green-400 rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
-                  onClick={() => {
-                    setIsOpen(!isOpen);
-                  }}
-                >
-                  Contact
+                  Classes
                 </Link>
                 <Link
                   to="/admin"
-                  className="px-3 py-2 mx-3 mt-3 font-semibold text-white bg-green-400 rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
+                  className="px-3 py-2 mx-3 mt-3 text-xl font-semibold text-black rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
                   onClick={() => {
                     setIsOpen(!isOpen);
                   }}
                 >
-                  Admin
+                  Classes Links
                 </Link>
 
                 <button
                   type="button"
-                  className="px-3 py-2 mx-3 mt-3 font-semibold text-left text-white bg-green-400 rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
+                  className="px-3 py-2 mx-3 mt-3 text-xl font-semibold text-left text-black rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
                   onClick={() => {
                     setIsOpen(!isOpen);
                     signout();

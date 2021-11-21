@@ -33,9 +33,8 @@ const ClassCard: FC<Props> = (props) => {
         <p>name of assignment</p>
       </div>
 
-      <div className="flex justify-end px-5 py-3 space-x-2 border-t border-gray-400">
+      <div className="flex justify-end px-5 py-3 border-t border-gray-400">
         <ImProfile className="w-7 h-7" />
-        <BiFolder className="w-7 h-7" />
       </div>
     </div>
   );
