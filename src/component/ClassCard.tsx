@@ -1,6 +1,5 @@
 import { FC, memo } from "react";
 import { ImProfile } from "react-icons/im";
-import { BiFolder } from "react-icons/bi";
 import dummyProfileImg from "../img/dummy_profile.webp";
 
 interface Props {
