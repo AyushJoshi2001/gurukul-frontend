@@ -29,7 +29,7 @@ const ClassCard: FC<Props> = (props) => {
       <div className="p-5 h-36">
         {/* list of assignments */}
         <p className="text-gray-400">due date</p>
-        <p>name of assignment</p>
+        <p className="truncate">name of assignment</p>
       </div>
 
       <div className="flex justify-end px-5 py-3 border-t border-gray-400">

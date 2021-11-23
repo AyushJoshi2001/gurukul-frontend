@@ -9,6 +9,7 @@ import { FaLock, FaUserAlt } from "react-icons/fa";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { signup } from "../api/auth";
 import AuthContext from "../context/auth.context";
+import { backendSignup } from "../api/backendAuth";
 
 interface Props {}
 
@@ -33,18 +34,26 @@ const Signup: FC<Props> = (props) => {
       email: "",
       password: "",
       name: "",
+      role: "",
     },
     validationSchema: yup.object().shape({
       email: yup.string().required().email(),
       password: yup.string().required().min(8),
       name: yup.string().required().min(3),
+      role: yup.string().required().equals(["Student", "Teacher"]),
     }),
     onSubmit: (data) => {
+      // console.log(data);
       signup(data)
         .then((response) => {
           // console.log("ID : ", response.user?.providerId);
           if (response.user != null) {
             setUser(response.user);
+            const id = response.user.uid;
+            const name = data.name;
+            const role = data.role;
+            const email = data.email;
+            backendSignup({ id, name, role, email });
           }
           history.push("/classroom");
         })
@@ -126,7 +135,7 @@ const Signup: FC<Props> = (props) => {
           </div>
 
           {/* student or teacher */}
-          <div className="flex pt-8">
+          <div className="flex flex-col pt-8">
             <div className="w-full px-2 py-1 border-2 border-gray-400 rounded focus:border-blue-500">
               <label htmlFor="role" className="sr-only">
                 Role
@@ -134,6 +143,8 @@ const Signup: FC<Props> = (props) => {
               <select
                 name="role"
                 id="role"
+                value={formik.values.role}
+                onChange={(v) => formik.setFieldValue("role", v.target.value)}
                 className="w-full text-gray-500 outline-none"
               >
                 <option value="select_role">Select your role</option>
@@ -141,6 +152,7 @@ const Signup: FC<Props> = (props) => {
                 <option value="Teacher">Teacher</option>
               </select>
             </div>
+            {<p className="text-red-600">{formik.errors.role}</p>}
           </div>
 
           <div className="flex justify-between pt-10">
