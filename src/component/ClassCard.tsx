@@ -3,21 +3,21 @@ import { ImProfile } from "react-icons/im";
 import dummyProfileImg from "../img/dummy_profile.webp";
 
 interface Props {
-  nameOfClass?: string;
-  classDescription?: string;
-  groupCreator?: string;
+  title?: string;
+  topic?: string;
+  description?: string;
 }
 
-const ClassCard: FC<Props> = (props) => {
+const ClassCard: FC<Props> = ({ title, topic, description }) => {
   return (
     <div
       className="relative flex flex-col max-w-xs m-5 overflow-hidden border border-gray-400 rounded-lg shadow-md hover:shadow-2xl"
       style={{ minWidth: "280px" }}
     >
       <div className="flex flex-col p-5 space-y-1 text-white bg-gray-600">
-        <p className="text-2xl">Name of Class</p>
-        <p className="text-base">Class description</p>
-        <p className="text-base">Name of creater</p>
+        <p className="text-2xl">{title}</p>
+        <p className="text-base">{topic}</p>
+        <p className="text-base">{description}</p>
       </div>
 
       <img

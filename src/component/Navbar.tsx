@@ -1,11 +1,15 @@
-import { FC, memo } from "react";
-import { BsPlusLg } from "react-icons/bs";
+import { FC, memo, useContext } from "react";
+import RoleContext from "../context/role.context";
+import AddClass from "./AddClass";
+import CreateClass from "./CreateClass";
 import ProfileDropdown from "./ProfileDropdown";
 import SideNav from "./SideNav";
 
 interface Props {}
 
 const Navbar: FC<Props> = (props) => {
+  const { role } = useContext(RoleContext);
+  console.log(role);
   return (
     <div className="flex justify-between p-5 border-b border-gray-400">
       <div className="flex items-center space-x-5">
@@ -16,7 +20,8 @@ const Navbar: FC<Props> = (props) => {
       </div>
       <div className="flex items-center space-x-8">
         <div className="p-3 rounded-full hover:shadow-lg">
-          <BsPlusLg className="w-6 h-6" />
+          {role && role === "Teacher" ? <CreateClass /> : ""}
+          {role && role === "Student" ? <AddClass /> : ""}
         </div>
         <ProfileDropdown className="rounded hover:shadow-xl" />
       </div>

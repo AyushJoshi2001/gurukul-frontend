@@ -1,29 +1,47 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { FC, Fragment, memo, useState } from "react";
-import { BsExclamationLg } from "react-icons/bs";
+import { useFormik } from "formik";
+import { FC, Fragment, memo, useContext, useState } from "react";
+import { BsPlusLg } from "react-icons/bs";
 import { ImCancelCircle } from "react-icons/im";
+import AuthContext from "../context/auth.context";
+import dummyProfileImg from "../img/dummy_profile.webp";
+import * as yup from "yup";
+import { joinClass } from "../api/backendApi";
 
-interface Props {
-  text?: string;
-  title?: string;
-  description?: string;
-  okText?: string;
-  cancelText?: string;
-}
+interface Props {}
 
 const AddClass: FC<Props> = (props) => {
+  const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      secretCode: 0,
+    },
+    validationSchema: yup.object().shape({
+      secretCode: yup.number().required().min(6),
+    }),
+    onSubmit: (data) => {
+      console.log(data);
+      const uid = user!.uid;
+      const secretCode = data.secretCode;
+
+      joinClass({ id: uid, secretCode: secretCode });
+      console.log("Class Joined...");
+
+      setIsOpen((e) => !e);
+    },
+  });
+
   return (
     <>
       <div>
-        <p
-          className="mt-32 text-center text-blue-500 cursor-pointer hover:underline"
+        <BsPlusLg
+          className="w-6 h-6 text-blue-500 cursor-pointer hover:underline"
           onClick={() => {
             setIsOpen((e) => !e);
           }}
-        >
-          {props.text}
-        </p>
+        />
       </div>
 
       <Transition.Root show={isOpen} as={Fragment}>
@@ -50,35 +68,60 @@ const AddClass: FC<Props> = (props) => {
             leaveFrom="translate-y-0"
             leaveTo="-translate-y-full "
           >
-            <div className="fixed z-10 transform bg-white rounded-md top-20 right-1/3 w-96">
-              <div className="flex justify-center pt-9">
-                <BsExclamationLg className="w-20 h-20 text-red-500" />
-              </div>
+            <div className="fixed z-10 w-3/5 mx-auto transform bg-white rounded-lg top-20 left-1/4 ">
               <button
                 className="absolute outline-none top-4 right-4"
                 onClick={() => setIsOpen(false)}
               >
-                <ImCancelCircle className="w-4 h-4" />
+                <ImCancelCircle className="w-6 h-6" />
               </button>
+              <form onSubmit={formik.handleSubmit}>
+                <div className="p-5 mx-10 my-10 space-y-10 border border-black rounded-lg">
+                  <div className="space-y-5">
+                    <p className="text-2xl">You're currently signed in as : </p>
+                    <div className="flex space-x-2">
+                      <img
+                        src={dummyProfileImg}
+                        alt="user"
+                        className="w-10 h-10 rounded-full"
+                      />
+                      <p className="flex items-center text-lg">{user!.email}</p>
+                    </div>
+                  </div>
 
-              <h2 className="px-10 text-3xl font-medium text-center pt-7">
-                {props.title}
-              </h2>
-              <p className="px-10 pt-8 text-sm text-center text-gray-600">
-                {props.description}
-              </p>
+                  <div className="space-y-2">
+                    <p className="text-lg">Enter Class Code :</p>
+                    <input
+                      type="number"
+                      name="secretCode"
+                      id="secretCode"
+                      value={formik.values.secretCode}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      className="px-2 py-1 border border-black rounded-lg"
+                    />
+                    {formik.touched.secretCode && (
+                      <p className="text-red-600">{formik.errors.secretCode}</p>
+                    )}
+                  </div>
+                </div>
 
-              <div className="flex justify-center py-10">
-                <button
-                  className="py-2 mr-3 bg-gray-400 rounded-md w-28 hover:bg-gray-600"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {props.cancelText}
-                </button>
-                <button className="py-2 bg-red-500 rounded-md w-28 hover:bg-red-600">
-                  {props.okText}
-                </button>
-              </div>
+                <div className="flex justify-center py-10">
+                  <button
+                    type="button"
+                    className="py-1 mr-3 text-lg text-white bg-gray-400 rounded-md w-28 hover:bg-gray-600"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="py-1 text-lg text-white bg-red-500 rounded-md w-28 hover:bg-red-600"
+                    type="submit"
+                  >
+                    Join
+                  </button>
+                </div>
+              </form>
             </div>
           </Transition.Child>
         </Dialog>

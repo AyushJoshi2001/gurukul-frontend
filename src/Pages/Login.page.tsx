@@ -9,11 +9,14 @@ import { FaLock, FaUserAlt } from "react-icons/fa";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { login, TOKEN_ID } from "../api/auth";
 import AuthContext from "../context/auth.context";
+import { getRole } from "../api/backendApi";
+import RoleContext from "../context/role.context";
 
 interface Props {}
 
 const Login: FC<Props> = (props) => {
   const { setUser } = useContext(AuthContext);
+  const { role, setRole } = useContext(RoleContext);
   const history = useHistory();
   const [toggle, setToggle] = useState(false);
   let toggleClass = "";
@@ -44,8 +47,17 @@ const Login: FC<Props> = (props) => {
           if (response.user != null) {
             localStorage.setItem(TOKEN_ID, response.user.refreshToken);
             setUser(response.user);
+
+            const uid = response.user.uid;
+            getRole({ id: uid })
+              .then((res) => {
+                setRole(res.data.Role);
+                console.log(res.data.Role);
+              })
+              .then(() => {
+                if (role) history.push("/classroom");
+              });
           }
-          history.push("/classroom");
         })
         .catch((error) => {
           // console.log(error);

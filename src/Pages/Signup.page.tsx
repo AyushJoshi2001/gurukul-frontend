@@ -10,11 +10,14 @@ import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { signup } from "../api/auth";
 import AuthContext from "../context/auth.context";
 import { backendSignup } from "../api/backendAuth";
+import RoleContext from "../context/role.context";
+import { getRole } from "../api/backendApi";
 
 interface Props {}
 
 const Signup: FC<Props> = (props) => {
   const { setUser } = useContext(AuthContext);
+  const roleData = useContext(RoleContext);
   const history = useHistory();
   const [toggle, setToggle] = useState(false);
   let toggleClass = "";
@@ -53,9 +56,18 @@ const Signup: FC<Props> = (props) => {
             const name = data.name;
             const role = data.role;
             const email = data.email;
-            backendSignup({ id, name, role, email });
+            backendSignup({ id, name, role, email }).then(() => {
+              const uid = id;
+              getRole({ id: uid })
+                .then((res) => {
+                  roleData.setRole(res.data.Role);
+                  console.log(res.data.Role);
+                })
+                .then(() => {
+                  if (roleData.role) history.push("/classroom");
+                });
+            });
           }
-          history.push("/classroom");
         })
         .catch((error) => {
           alert(error.message);
