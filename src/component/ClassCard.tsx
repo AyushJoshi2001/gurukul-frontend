@@ -17,7 +17,7 @@ const ClassCard: FC<Props> = ({ title, topic, description }) => {
       <div className="flex flex-col p-5 space-y-1 text-white bg-gray-600">
         <p className="text-2xl">{title}</p>
         <p className="text-base">{topic}</p>
-        <p className="text-base">{description}</p>
+        {/* <p className="text-base">{description}</p> */}
       </div>
 
       <img

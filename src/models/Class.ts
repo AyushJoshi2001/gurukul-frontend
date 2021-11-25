@@ -1,6 +1,8 @@
 export interface Class {
-    title: string;
-    topic: string;
-    moto: string;
-    teacherId: string;
+        id: 1,
+        title: string;
+        topic: string;
+        motto?: string | null;
+        secretCode: number;
+        announcement: [];
 }
