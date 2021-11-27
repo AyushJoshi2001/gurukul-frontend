@@ -6,34 +6,43 @@ interface Props {
   title?: string;
   topic?: string;
   description?: string;
+  secretCode?: number;
+  onClick: () => void;
 }
 
-const ClassCard: FC<Props> = ({ title, topic, description }) => {
+const ClassCard: FC<Props> = ({
+  title,
+  topic,
+  description,
+  secretCode,
+  onClick,
+}) => {
   return (
     <div
-      className="relative flex flex-col max-w-xs m-5 overflow-hidden border border-gray-400 rounded-lg shadow-md hover:shadow-2xl"
+      className="relative flex flex-col flex-shrink-0 m-5 overflow-hidden border border-gray-400 rounded-lg shadow-md w-80 hover:shadow-2xl"
       style={{ minWidth: "280px" }}
     >
       <div className="flex flex-col p-5 space-y-1 text-white bg-gray-600">
-        <p className="text-2xl">{title}</p>
+        <p className="text-2xl cursor-pointer" onClick={onClick}>
+          {title}
+        </p>
         <p className="text-base">{topic}</p>
-        {/* <p className="text-base">{description}</p> */}
       </div>
 
       <img
         src={dummyProfileImg}
-        className="absolute w-16 h-16 bg-blue-500 rounded-full right-5 top-24"
+        className="absolute w-16 h-16 bg-blue-500 rounded-full right-5 top-16"
         alt=""
       />
 
       <div className="p-5 h-36">
         {/* list of assignments */}
-        <p className="text-gray-400">due date</p>
-        <p className="truncate">name of assignment</p>
+        <p className="pt-3 truncate">{description}</p>
       </div>
 
-      <div className="flex justify-end px-5 py-3 border-t border-gray-400">
-        <ImProfile className="w-7 h-7" />
+      <div className="flex justify-between px-5 py-3 border-t border-gray-400">
+        <p className="font-semibold">Secret Code : {secretCode}</p>
+        <ImProfile className="cursor-pointer w-7 h-7" onClick={onClick} />
       </div>
     </div>
   );

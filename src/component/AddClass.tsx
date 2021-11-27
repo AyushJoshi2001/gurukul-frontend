@@ -6,27 +6,35 @@ import { ImCancelCircle } from "react-icons/im";
 import AuthContext from "../context/auth.context";
 import dummyProfileImg from "../img/dummy_profile.webp";
 import * as yup from "yup";
-import { joinClass } from "../api/backendApi";
+import { getClasses, joinClass } from "../api/backendApi";
+import ClassContext from "../context/class.context";
 
 interface Props {}
 
 const AddClass: FC<Props> = (props) => {
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const { setClassroom } = useContext(ClassContext);
 
   const formik = useFormik({
     initialValues: {
       secretCode: 0,
     },
     validationSchema: yup.object().shape({
-      secretCode: yup.number().required().min(6),
+      secretCode: yup.number().required().max(999999),
     }),
     onSubmit: (data) => {
       console.log(data);
       const uid = user!.uid;
       const secretCode = data.secretCode;
 
-      joinClass({ id: uid, secretCode: secretCode });
+      joinClass({ id: uid, secretCode: secretCode }).then(() => {
+        const id = uid;
+        getClasses(id).then((response: any) => {
+          // console.log(response.data.listOfClasses);
+          setClassroom(response.data.listOfClasses);
+        });
+      });
       console.log("Class Joined...");
 
       setIsOpen((e) => !e);
@@ -68,7 +76,7 @@ const AddClass: FC<Props> = (props) => {
             leaveFrom="translate-y-0"
             leaveTo="-translate-y-full "
           >
-            <div className="fixed z-10 w-3/5 mx-auto transform bg-white rounded-lg top-20 left-1/4 ">
+            <div className="fixed top-0 z-10 w-full max-h-full min-h-screen mx-auto overflow-scroll transform bg-white rounded-lg md:w-3/5 md:left-1/4 ">
               <button
                 className="absolute outline-none top-4 right-4"
                 onClick={() => setIsOpen(false)}

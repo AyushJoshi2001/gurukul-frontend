@@ -13,7 +13,7 @@ interface CreateClass {
     id: string;
     title: string;
     topic: string;
-    moto: string;
+    motto: string;
 }
 export const createClass = (data: CreateClass) => {
     const url = BASE_URL+"/createClass";
@@ -38,6 +38,40 @@ interface GetRole {
 }
 export const getRole = (data: GetRole) => {
     const url = BASE_URL+"/role";
+    return axios.post(url, data).then((response) => {
+        return response;
+    });
+}
+
+interface AddAnnouncement {
+    title: string;
+    msg: string;
+    due_date: string;
+    secretCode: number;
+}
+export const addAnnouncement = (data: AddAnnouncement) => {
+    const url = BASE_URL+"/announce";
+    return axios.post(url, data).then((response) => {
+        return response;
+    });
+}
+
+interface FetchAnnouncements {
+    secretCode: number;
+}
+export const fetchAnnouncements = (data: FetchAnnouncements) => {
+    const url = BASE_URL+"/fetchAnnouncements";
+    return axios.post(url, data).then((response) => {
+        return response;
+    });
+}
+
+interface FetchAnnouncementsDetails {
+    announcementId: number;
+    uid: string;
+}
+export const fetchAnnouncementsDetails = (data: FetchAnnouncementsDetails) => {
+    const url = BASE_URL+"/fetchAnnouncementsDetails";
     return axios.post(url, data).then((response) => {
         return response;
     });

@@ -1,4 +1,5 @@
 import { FC, memo, useContext, useEffect } from "react";
+import { useHistory } from "react-router";
 import { getClasses } from "../api/backendApi";
 import ClassCard from "../component/ClassCard";
 import AuthContext from "../context/auth.context";
@@ -9,6 +10,7 @@ import { Class } from "../models/Class";
 interface Props {}
 
 const Classroom: FC<Props> = (props) => {
+  const history = useHistory();
   const { classroom, setClassroom } = useContext(ClassContext);
   const { role } = useContext(RoleContext);
   const { user } = useContext(AuthContext);
@@ -17,7 +19,7 @@ const Classroom: FC<Props> = (props) => {
     const id = user!.uid;
     if (role) {
       getClasses(id).then((response: any) => {
-        console.log(response.data.listOfClasses);
+        // console.log(response.data.listOfClasses);
         setClassroom(response.data.listOfClasses);
       });
     }
@@ -31,6 +33,11 @@ const Classroom: FC<Props> = (props) => {
             key={class_.id}
             title={class_.title}
             topic={class_.topic}
+            description={class_.motto}
+            secretCode={class_.secretCode}
+            onClick={() => {
+              history.push(`/dashboard/${class_.secretCode}`);
+            }}
           />
         );
       })}

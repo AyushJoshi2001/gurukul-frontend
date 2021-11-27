@@ -6,12 +6,14 @@ import { ImCancelCircle } from "react-icons/im";
 import AuthContext from "../context/auth.context";
 import dummyProfileImg from "../img/dummy_profile.webp";
 import * as yup from "yup";
-import { createClass } from "../api/backendApi";
+import { createClass, getClasses } from "../api/backendApi";
+import ClassContext from "../context/class.context";
 
 interface Props {}
 
 const CreateClass: FC<Props> = (props) => {
   const { user } = useContext(AuthContext);
+  const { setClassroom } = useContext(ClassContext);
   const [isOpen, setIsOpen] = useState(false);
   const [secretCode, setSecretCode] = useState(0);
 
@@ -31,10 +33,18 @@ const CreateClass: FC<Props> = (props) => {
       const uid = user!.uid;
       const title = data.title;
       const topic = data.topic;
-      const moto = data.moto;
-      createClass({ id: uid, title, topic, moto }).then((res: any) => {
-        setSecretCode(res.data.SecretCode);
-      });
+      const motto = data.moto;
+      createClass({ id: uid, title, topic, motto })
+        .then((res: any) => {
+          setSecretCode(res.data.SecretCode);
+        })
+        .then(() => {
+          const id = uid;
+          getClasses(id).then((response: any) => {
+            // console.log(response.data.listOfClasses);
+            setClassroom(response.data.listOfClasses);
+          });
+        });
     },
   });
 
@@ -73,7 +83,7 @@ const CreateClass: FC<Props> = (props) => {
             leaveFrom="translate-y-0"
             leaveTo="-translate-y-full "
           >
-            <div className="fixed top-0 z-10 w-3/5 min-h-screen mx-auto transform bg-white rounded-lg left-1/4 ">
+            <div className="fixed top-0 z-10 w-full max-h-full min-h-screen mx-auto overflow-scroll transform bg-white rounded-lg md:w-3/5 md:left-1/4 ">
               <button
                 className="absolute outline-none top-4 right-4"
                 onClick={() => setIsOpen(false)}

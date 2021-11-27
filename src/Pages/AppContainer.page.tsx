@@ -15,7 +15,7 @@ const AppContainer: FC<Props> = (props) => {
         <Route path="/classroom">
           <ClassroomPage />
         </Route>
-        <Route path="/dashboard">
+        <Route path="/dashboard/:secretCode">
           <DashboardPage />
         </Route>
         <Route path="/assignment">

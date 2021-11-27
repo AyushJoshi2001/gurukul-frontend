@@ -27,7 +27,7 @@ function App() {
         const uid = u.uid;
         getRole({ id: uid }).then((res) => {
           setRole(res.data.Role);
-          console.log(res.data.Role);
+          // console.log(res.data.Role);
         });
       }
     });
@@ -53,7 +53,10 @@ function App() {
               <Route path={["/login", "/signup"]} exact>
                 {user ? <Redirect to="/classroom" /> : <AuthPage />}
               </Route>
-              <Route path={["/classroom", "/dashboard", "/assignment"]} exact>
+              <Route
+                path={["/classroom", "/dashboard/:secretCode", "/assignment"]}
+                exact
+              >
                 {user ? <AppContainerPage /> : <Redirect to="/login" />}
               </Route>
               <Route>
