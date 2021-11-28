@@ -1,7 +1,6 @@
 import { FC, memo } from "react";
 import "../css/postWithComment.css";
 import dummy from "../img/GLA.png";
-import ClassCommentTextarea from "./ClassCommentTextarea";
 
 interface Props {}
 
@@ -57,7 +56,7 @@ const PostWithComment: FC<Props> = (props) => {
                     <IoMdSend className="w-7 h-7"/>
                     </div>
                   </div> */}
-          <ClassCommentTextarea className="" />
+          {/* <ClassCommentTextarea className="" /> */}
         </footer>
       </main>
     </div>

@@ -46,7 +46,7 @@ export const getRole = (data: GetRole) => {
 interface AddAnnouncement {
     title: string;
     msg: string;
-    due_date: string;
+    dueDate: string;
     secretCode: number;
 }
 export const addAnnouncement = (data: AddAnnouncement) => {
@@ -57,7 +57,7 @@ export const addAnnouncement = (data: AddAnnouncement) => {
 }
 
 interface FetchAnnouncements {
-    secretCode: number;
+    secretCode: string;
 }
 export const fetchAnnouncements = (data: FetchAnnouncements) => {
     const url = BASE_URL+"/fetchAnnouncements";
@@ -68,11 +68,23 @@ export const fetchAnnouncements = (data: FetchAnnouncements) => {
 
 interface FetchAnnouncementsDetails {
     announcementId: number;
-    uid: string;
+    uId: string;
 }
 export const fetchAnnouncementsDetails = (data: FetchAnnouncementsDetails) => {
     const url = BASE_URL+"/fetchAnnouncementsDetails";
     return axios.post(url, data).then((response) => {
         return response;
     });
+}
+
+interface AddComment {
+    uId: string;
+    announcementId: string;
+    message: string;
+}
+export const addComment = (data: AddComment) => {
+    const url = BASE_URL+"/comments";
+    return axios.post(url, data).then((response) => {
+        return response;
+    })
 }

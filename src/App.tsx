@@ -54,7 +54,11 @@ function App() {
                 {user ? <Redirect to="/classroom" /> : <AuthPage />}
               </Route>
               <Route
-                path={["/classroom", "/dashboard/:secretCode", "/assignment"]}
+                path={[
+                  "/classroom",
+                  "/dashboard/:secretCode",
+                  "/assignment/:announcementId",
+                ]}
                 exact
               >
                 {user ? <AppContainerPage /> : <Redirect to="/login" />}

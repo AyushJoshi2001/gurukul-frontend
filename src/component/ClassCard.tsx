@@ -23,7 +23,10 @@ const ClassCard: FC<Props> = ({
       style={{ minWidth: "280px" }}
     >
       <div className="flex flex-col p-5 space-y-1 text-white bg-gray-600">
-        <p className="text-2xl cursor-pointer" onClick={onClick}>
+        <p
+          className="text-2xl cursor-pointer hover:underline"
+          onClick={onClick}
+        >
           {title}
         </p>
         <p className="text-base">{topic}</p>
@@ -42,7 +45,10 @@ const ClassCard: FC<Props> = ({
 
       <div className="flex justify-between px-5 py-3 border-t border-gray-400">
         <p className="font-semibold">Secret Code : {secretCode}</p>
-        <ImProfile className="cursor-pointer w-7 h-7" onClick={onClick} />
+        <ImProfile
+          className="cursor-pointer hover:text-blue-500 w-7 h-7"
+          onClick={onClick}
+        />
       </div>
     </div>
   );
