@@ -29,6 +29,7 @@ const ClassCommentTextarea: FC<Props> = ({
         message: data.comment,
         announcementId: announcementId,
       });
+      window.location.href = `/assignment/${announcementId}`;
     },
   });
 

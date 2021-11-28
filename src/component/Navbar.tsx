@@ -9,7 +9,7 @@ interface Props {}
 
 const Navbar: FC<Props> = (props) => {
   const { role } = useContext(RoleContext);
-  console.log(role);
+  // console.log(role);
   return (
     <div className="flex justify-between p-5 border-b border-gray-400">
       <div className="flex items-center space-x-5">

@@ -76,7 +76,7 @@ const Dashboard: FC<Props> = (props) => {
               title={announce.msg}
               key={announce.id}
               onClick={() => {
-                history.push("/assignment");
+                history.push(`/assignment/${announce.id}`);
               }}
             />
           );

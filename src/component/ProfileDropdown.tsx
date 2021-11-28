@@ -1,14 +1,17 @@
 import { Menu, Transition } from "@headlessui/react";
-import { FC, Fragment, memo } from "react";
+import { FC, Fragment, memo, useContext } from "react";
 import { CgProfile } from "react-icons/cg";
 import { signout } from "../api/auth";
 import { VscSignOut } from "react-icons/vsc";
+import AuthContext from "../context/auth.context";
 
 interface Props {
   className?: string;
 }
 
 const ProfileDropdown: FC<Props> = ({ className }) => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div>
       <Menu as="div" className={className}>
@@ -16,7 +19,7 @@ const ProfileDropdown: FC<Props> = ({ className }) => {
           <Menu.Button>
             <div className="flex flex-col items-center">
               <CgProfile className="text-black w-9 h-9" />
-              <p className="text-black">Dummy user</p>
+              <p className="text-black">{user!.email}</p>
             </div>
           </Menu.Button>
           <Transition

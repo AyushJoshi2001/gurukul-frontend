@@ -7,6 +7,7 @@ import AuthContext from "../context/auth.context";
 import { fetchAnnouncementsDetails } from "../api/backendApi";
 import RoleContext from "../context/role.context";
 import { AnnouncementDetailsWithAssignment } from "../models/AnnouncementDetails";
+import { Comment } from "../models/Comment";
 
 interface Props {}
 
@@ -14,6 +15,7 @@ const Assignment: FC<Props> = (props) => {
   const { announcementId } = useParams<any>();
   const { user } = useContext(AuthContext);
   const { role } = useContext(RoleContext);
+  const [comments, setComments] = useState<Comment[]>();
   const [announcementDetails, setAnnouncementDetails] =
     useState<AnnouncementDetailsWithAssignment>();
 
@@ -22,14 +24,18 @@ const Assignment: FC<Props> = (props) => {
     if (role) {
       fetchAnnouncementsDetails({ announcementId, uId: id }).then((res) => {
         setAnnouncementDetails(res.data);
-        console.log(res.data);
+        setComments(res.data.announcement.comment);
+        // console.log(res.data);
       });
     }
   }, [role]); // eslint-disable-line
-
+  // console.log(announcementDetails);
+  if (announcementDetails === undefined) {
+    return <p>Loading...</p>;
+  }
   return (
-    <div>
-      <div className="flex flex-col-reverse max-w-6xl mx-auto mt-10 space-x-0 space-y-20 md:flex-row md:space-x-5 md:space-y-0">
+    <div className="max-w-6xl mx-auto space-y-20">
+      <div className="flex flex-col-reverse mt-10 space-x-0 space-y-20 md:flex-row md:space-x-5 md:space-y-0">
         <div className="flex-1 p-5 shadow-2xl rounded-xl">
           <div id="parent-head ">
             <div className="head-section">
@@ -39,7 +45,7 @@ const Assignment: FC<Props> = (props) => {
               <p>100 points</p>
               <div className="flex items-center">
                 <p className="text-base text-gray-400">
-                  {announcementDetails!.announcement.dueDate.slice(0, 10)}
+                  {/* {announcementDetails?.announcement.dueDate.slice(0, 10)} */}
                 </p>
               </div>
             </div>
@@ -51,16 +57,6 @@ const Assignment: FC<Props> = (props) => {
             </div>
           </div>
 
-          {/* <div id="lowerDivForPost">
-          <div className="image-div1">
-          <img src={dummy} alt="Assginment" />
-          </div>
-          <div id="image-rightDiv">
-          <h1>Pracital-15.png</h1>
-          <p>image file</p>
-          </div>
-        </div> */}
-
           <ClassCommentTextarea
             className="mt-3"
             uId={user!.uid}
@@ -70,6 +66,30 @@ const Assignment: FC<Props> = (props) => {
 
         <div>
           <AssignmentSubmission />
+        </div>
+      </div>
+
+      <div className="p-5 shadow-2xl rounded-xl ">
+        <p className="pb-5 text-3xl text-blue-700">Comments : </p>
+        <div>
+          {comments &&
+            comments.map((comment) => {
+              return comment.teacher === null ? (
+                <p
+                  key={comment.id}
+                  className="px-5 py-1 my-2 bg-gray-200 rounded-lg"
+                >
+                  {comment.student.name}: {comment.message}
+                </p>
+              ) : (
+                <p
+                  key={comment.id}
+                  className="px-5 py-1 my-2 bg-gray-200 rounded-lg"
+                >
+                  {comment.teacher.name}: {comment.message}
+                </p>
+              );
+            })}
         </div>
       </div>
     </div>

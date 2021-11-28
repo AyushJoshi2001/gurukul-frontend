@@ -66,7 +66,7 @@ const SideNav: FC<Props> = ({ className }) => {
                   Classes
                 </Link>
                 <Link
-                  to="/admin"
+                  to="/classes"
                   className="px-3 py-2 mx-3 mt-3 text-xl font-semibold text-black rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
                   onClick={() => {
                     setIsOpen(!isOpen);
