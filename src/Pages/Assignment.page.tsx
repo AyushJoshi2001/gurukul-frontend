@@ -8,24 +8,30 @@ import { fetchAnnouncementsDetails } from "../api/backendApi";
 import RoleContext from "../context/role.context";
 import { AnnouncementDetailsWithAssignment } from "../models/AnnouncementDetails";
 import { Comment } from "../models/Comment";
+import { Assignments } from "../models/Assignments";
+import AssignmentDetails from "../component/AssignmentDetails";
 
 interface Props {}
 
 const Assignment: FC<Props> = (props) => {
   const { announcementId } = useParams<any>();
+  const announceId: string = announcementId;
   const { user } = useContext(AuthContext);
   const { role } = useContext(RoleContext);
   const [comments, setComments] = useState<Comment[]>();
+  const [assignments, setAssignments] = useState<Assignments[]>();
   const [announcementDetails, setAnnouncementDetails] =
     useState<AnnouncementDetailsWithAssignment>();
 
+  const assign = assignments;
   useEffect(() => {
     const id = user!.uid;
     if (role) {
       fetchAnnouncementsDetails({ announcementId, uId: id }).then((res) => {
         setAnnouncementDetails(res.data);
         setComments(res.data.announcement.comment);
-        // console.log(res.data);
+        setAssignments(res.data.assignment);
+        console.log(res.data.assignment);
       });
     }
   }, [role]); // eslint-disable-line
@@ -65,7 +71,11 @@ const Assignment: FC<Props> = (props) => {
         </div>
 
         <div>
-          <AssignmentSubmission />
+          {role === "Student" ? (
+            <AssignmentSubmission announcementId={announceId} />
+          ) : (
+            <AssignmentDetails assignments={assign} />
+          )}
         </div>
       </div>
 

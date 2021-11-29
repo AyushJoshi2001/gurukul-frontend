@@ -1,8 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { FC, Fragment, memo, useState } from "react";
+import { FC, Fragment, memo, useContext, useState } from "react";
 import { GiCancel, GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { signout } from "../api/auth";
+import ClassContext from "../context/class.context";
 
 interface Props {
   className?: string;
@@ -10,6 +11,8 @@ interface Props {
 
 const SideNav: FC<Props> = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { classroom } = useContext(ClassContext);
+  const classes = classroom;
   return (
     <>
       <div>
@@ -63,17 +66,22 @@ const SideNav: FC<Props> = ({ className }) => {
                     setIsOpen(!isOpen);
                   }}
                 >
-                  Classes
+                  All Classes
                 </Link>
-                <Link
-                  to="/classes"
-                  className="px-3 py-2 mx-3 mt-3 text-xl font-semibold text-black rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
-                  onClick={() => {
-                    setIsOpen(!isOpen);
-                  }}
-                >
-                  Classes Links
-                </Link>
+                {classes.map((class_) => {
+                  return (
+                    <Link
+                      key={class_.secretCode}
+                      to={`/dashboard/${class_.secretCode}`}
+                      className="px-3 py-2 mx-3 mt-3 text-xl font-semibold text-black truncate rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
+                      onClick={() => {
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      {class_.title}
+                    </Link>
+                  );
+                })}
 
                 <button
                   type="button"

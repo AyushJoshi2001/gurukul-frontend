@@ -88,3 +88,16 @@ export const addComment = (data: AddComment) => {
         return response;
     })
 }
+
+export interface SubmitAssignment {
+    uId: string;
+    announcementId: string;
+    downloadUrl: string;
+}
+export const submitAssignment = (data: SubmitAssignment) => {
+    const url = BASE_URL+"/submitAnnouncements";
+    console.log(data);
+    return axios.post(url, data).then((response) => {
+        return response;
+    })
+}

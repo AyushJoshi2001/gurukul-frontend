@@ -12,7 +12,7 @@ const Navbar: FC<Props> = (props) => {
   // console.log(role);
   return (
     <div className="flex justify-between p-5 border-b border-gray-400">
-      <div className="flex items-center space-x-5">
+      <div className="flex items-center space-x-5 cursor-pointer">
         <div className="p-3 rounded-full hover:shadow-lg">
           <SideNav className="flex-shrink-0" />
         </div>
