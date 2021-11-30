@@ -46,7 +46,7 @@ const Dashboard: FC<Props> = (props) => {
           });
         });
     }
-  }, [role, secretCode]); // eslint-disable-line
+  }, [role, secretCode, announcements]); // eslint-disable-line
 
   return (
     <div>

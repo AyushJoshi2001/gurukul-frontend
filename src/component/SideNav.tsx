@@ -54,14 +54,14 @@ const SideNav: FC<Props> = ({ className }) => {
                 }
               >
                 <GiCancel
-                  className="absolute text-black w-7 h-7 right-2 top-2"
+                  className="absolute text-gray-600 cursor-pointer w-7 h-7 right-3 top-3"
                   onClick={() => {
                     setIsOpen(!isOpen);
                   }}
                 />
                 <Link
                   to="/classroom"
-                  className="px-3 py-2 mx-3 mt-16 text-xl font-semibold text-black rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
+                  className="px-3 py-2 mx-3 mt-16 text-xl text-black border-b border-black rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
                   onClick={() => {
                     setIsOpen(!isOpen);
                   }}
@@ -73,7 +73,7 @@ const SideNav: FC<Props> = ({ className }) => {
                     <Link
                       key={class_.secretCode}
                       to={`/dashboard/${class_.secretCode}`}
-                      className="px-3 py-2 mx-3 mt-3 text-xl font-semibold text-black truncate rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
+                      className="px-3 py-2 mx-3 mt-3 text-xl text-black truncate border-b border-black rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
                       onClick={() => {
                         setIsOpen(!isOpen);
                       }}
@@ -85,7 +85,7 @@ const SideNav: FC<Props> = ({ className }) => {
 
                 <button
                   type="button"
-                  className="px-3 py-2 mx-3 mt-3 text-xl font-semibold text-left text-black rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
+                  className="px-3 py-2 mx-3 mt-3 text-xl text-left text-black border-b border-black rounded-lg outline-none hover:bg-green-100 hover:text-gray-500"
                   onClick={() => {
                     setIsOpen(!isOpen);
                     signout();

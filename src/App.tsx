@@ -12,6 +12,7 @@ import ClassContext from "./context/class.context";
 import { Class } from "./models/Class";
 import RoleContext from "./context/role.context";
 import { getRole } from "./api/backendApi";
+import NotVerified from "./Pages/NotVerified";
 
 function App() {
   const [user, setUser] = useState<User>();
@@ -48,10 +49,26 @@ function App() {
           <BrowserRouter>
             <Switch>
               <Route path="/" exact>
-                {user ? <Redirect to="/classroom" /> : <Redirect to="/login" />}
+                {user ? (
+                  user.emailVerified ? (
+                    <Redirect to="/classroom" />
+                  ) : (
+                    <NotVerified />
+                  )
+                ) : (
+                  <Redirect to="/login" />
+                )}
               </Route>
               <Route path={["/login", "/signup"]} exact>
-                {user ? <Redirect to="/classroom" /> : <AuthPage />}
+                {user ? (
+                  user.emailVerified ? (
+                    <Redirect to="/classroom" />
+                  ) : (
+                    <NotVerified />
+                  )
+                ) : (
+                  <AuthPage />
+                )}
               </Route>
               <Route
                 path={[
@@ -61,7 +78,15 @@ function App() {
                 ]}
                 exact
               >
-                {user ? <AppContainerPage /> : <Redirect to="/login" />}
+                {user ? (
+                  user.emailVerified ? (
+                    <AppContainerPage />
+                  ) : (
+                    <NotVerified />
+                  )
+                ) : (
+                  <Redirect to="/login" />
+                )}
               </Route>
               <Route>
                 <PageNotFoundPage />

@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       backgroundColor: {
         primaryPink: "#F7BDD6",
+        cyan: "#66BFBF",
+        priBack: "#D3E4CD",
       },
       backgroundImage: {
         dashboard_background:
